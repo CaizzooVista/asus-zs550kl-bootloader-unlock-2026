@@ -1,0 +1,112 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+4 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R] /Count 2 >>
+endobj
+5 0 obj
+<< /Length 2696 >>
+stream
+BT /F2 16 Tf 1 0 0 1 42 806 Tm (ASUS ZenFone 3 Deluxe 5.5 ZS550KL - Bootloader Unlock 2026) Tj ET
+BT /F1 10 Tf 1 0 0 1 42 788 Tm (Caizzoo Vista | ZS550KL / Z01FD / Z018 | WW | Snapdragon 625 MSM8953 | 64 GB eMMC) Tj ET
+BT /F2 11 Tf 1 0 0 1 42 773 Tm (IMPORTANTE) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 755 Tm (Guia validada en un telefono real. NO usar para ZS570KL/Z016 ni ZE552KL.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 743 Tm (El desbloqueo borra userdata. Tener EDL 9008 funcional antes de modificar aboot.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 731 Tm (Mantener abootbak stock y guardar todos los backups fuera del telefono.) Tj ET
+BT /F2 11 Tf 1 0 0 1 42 719 Tm (1. Entrar en Qualcomm EDL 9008) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 701 Tm (En la unidad probada, adb reboot edl / reboot edl no llegaron a 9008.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 689 Tm (Funciono un cable deep-flash: puente temporal USB D+ <-> GND al conectar el telefono apagado.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 677 Tm (Mantener Vol+ + Power unos 20 segundos y soltar el puente. Nunca puentear +5V/VBUS con GND.) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 665 Tm (Get-PnpDevice -PresentOnly | Where-Object {$_.InstanceId -match 'VID_05C6'}) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 653 Tm (Resultado correcto: VID_05C6&PID_9008. PID_900E es crash dump, no la ruta Firehose final.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 641 Tm (Con Zadig: List All Devices -> 05C6:9008 -> WinUSB.) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 629 Tm (qdl.exe list) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 617 Tm (Esperado: 05c6:9008 \(none\)) Tj ET
+BT /F2 11 Tf 1 0 0 1 42 605 Tm (2. Validar Firehose y hacer backups) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 587 Tm (Programmer usado: Asus_ZS550KL_prog_emmc_firehose_8953_ddr.mbn) Tj ET
+BT /F3 7 Tf 1 0 0 1 42 575 Tm (qdl.exe -d -R -s emmc Asus_ZS550KL_prog_emmc_firehose_8953_ddr.mbn read 0/0+34 gpt-primary.bin) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 563 Tm (Confirmar MemoryName="eMMC", TargetName="8953" y lectura exitosa antes de escribir.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 551 Tm (Backups minimos: aboot, abootbak, config, devinfo, sysconf, bootparam y GPT.) Tj ET
+BT /F2 11 Tf 1 0 0 1 42 539 Tm (3. Parche decisivo de config) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 521 Tm (En el backup real: config[0x1FC]=01 y config[0x7FFFF]=00.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 509 Tm (El engineering aboot comprueba config[0x7FFFF] & 1.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 497 Tm (Crear config-patched.img desde TU config y cambiar SOLO 0x7FFFF: 00 -> 01.) Tj ET
+BT /F3 7 Tf 1 0 0 1 42 485 Tm (qdl.exe -R -s emmc ... write config config-patched.img) Tj ET
+BT /F3 7 Tf 1 0 0 1 42 473 Tm (qdl.exe -R -s emmc ... read config config-after-write.img) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 461 Tm (Comparar SHA-256 de ambos archivos: deben ser identicos.) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 3074 >>
+stream
+BT /F2 11 Tf 1 0 0 1 42 806 Tm (4. Engineering aboot temporal) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 788 Tm (NO tocar abootbak. Reemplazar solamente el aboot primario y verificar read-back.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 776 Tm (SHA-256 engineering aboot:) Tj ET
+BT /F3 7 Tf 1 0 0 1 42 764 Tm (369158325d9e39c88fb5d9969fbb1cd647e476bbbe97130b1be02b63b184d296) Tj ET
+BT /F3 7 Tf 1 0 0 1 42 752 Tm (qdl.exe -R -s emmc ... write aboot aboot.img) Tj ET
+BT /F2 11 Tf 1 0 0 1 42 740 Tm (5. Desbloqueo real) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 722 Tm (fastboot oem device-info) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 710 Tm (fastboot flashing get_unlock_ability) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 698 Tm (El stock Oreo no registraba get_unlock_ability; si responde, el engineering aboot esta) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 686 Tm (activo.) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 674 Tm (En la unidad probada inicialmente devolvio 0. La secuencia que funciono fue:) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 662 Tm (fastboot flash config H:\\qdl\\config-patched.img) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 650 Tm (fastboot reboot-bootloader) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 638 Tm (fastboot flashing get_unlock_ability) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 626 Tm (Cuando get_unlock_ability = 1:) Tj ET
+BT /F3 9 Tf 1 0 0 1 42 614 Tm (fastboot oem unlock-go) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 602 Tm (El telefono se reinicia y borra userdata. Luego comprobar:) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 590 Tm (fastboot oem device-info) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 578 Tm (Resultado requerido: Device unlocked: true) Tj ET
+BT /F2 11 Tf 1 0 0 1 42 566 Tm (6. Restaurar aboot Oreo stock) Tj ET
+BT /F3 7 Tf 1 0 0 1 42 548 Tm (qdl.exe -R -s emmc ... write aboot aboot-edl-backup.img) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 536 Tm (SHA-256 aboot stock esperado:) Tj ET
+BT /F3 7 Tf 1 0 0 1 42 524 Tm (1fc963b732cd634c7ebd82246f4938ed40b158ae57a836ec6da2bae24e2bcdc0) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 512 Tm (Reiniciar y confirmar que Device unlocked: true persiste con el aboot stock restaurado.) Tj ET
+BT /F2 11 Tf 1 0 0 1 42 500 Tm (7. Root Magisk opcional) Tj ET
+BT /F3 7 Tf 1 0 0 1 42 482 Tm (qdl.exe -R -s emmc ... read boot boot-stock.img) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 470 Tm (Parchear boot-stock.img en Magisk. Probar primero con fastboot boot antes de flashear.) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 458 Tm (fastboot boot magisk_patched-XXXXX.img) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 446 Tm (adb shell su -c id) Tj ET
+BT /F3 8 Tf 1 0 0 1 42 434 Tm (fastboot flash boot magisk_patched-XXXXX.img) Tj ET
+BT /F2 11 Tf 1 0 0 1 42 422 Tm (Hashes utiles) Tj ET
+BT /F1 8 Tf 1 0 0 1 42 404 Tm (config stock: 319270ac6f9b4c221a620e51bb15a06260957785f8d032f42279a39bf603dab2) Tj ET
+BT /F1 8 Tf 1 0 0 1 42 392 Tm (config patched probado: d54de9ff373143e1a4dd43bea5a4386d090217214a2aae8458ef113281d1134b) Tj ET
+BT /F2 11 Tf 1 0 0 1 42 380 Tm (Resultado final validado) Tj ET
+BT /F1 9 Tf 1 0 0 1 42 362 Tm (Device unlocked: true | aboot Oreo stock restaurado | root Magisk permanente funcionando.) Tj ET
+BT /F1 8 Tf 1 0 0 1 42 350 Tm (Investigacion y pruebas practicas: Caizzoo Vista | 27 de septiembre de 2026) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 4 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 1 0 R /F2 2 0 R /F3 3 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Type /Catalog /Pages 4 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000000222 00000 n 
+0000000285 00000 n 
+0000003032 00000 n 
+0000003178 00000 n 
+0000006303 00000 n 
+0000006449 00000 n 
+trailer
+<< /Size 10 /Root 9 0 R >>
+startxref
+6498
+%%EOF
